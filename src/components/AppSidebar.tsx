@@ -1,4 +1,5 @@
 import { LayoutDashboard, ListTodo, BarChart3, Moon, Sun, Zap } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface AppSidebarProps {
@@ -7,9 +8,9 @@ interface AppSidebarProps {
 }
 
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: ListTodo, label: "My Tasks", active: false },
-  { icon: BarChart3, label: "Analytics", active: false },
+  { icon: LayoutDashboard, label: "Dashboard", to: "/" },
+  { icon: ListTodo, label: "My Tasks", to: "/tasks" },
+  { icon: BarChart3, label: "Analytics", to: "/analytics" },
 ];
 
 export function AppSidebar({ dark, onToggleTheme }: AppSidebarProps) {
@@ -28,18 +29,22 @@ export function AppSidebar({ dark, onToggleTheme }: AppSidebarProps) {
       {/* Nav */}
       <nav className="flex-1 px-3 mt-2 space-y-0.5">
         {navItems.map((item) => (
-          <button
+          <NavLink
             key={item.label}
-            className={cn(
-              "flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-              item.active
-                ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                : "text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
-            )}
+            to={item.to}
+            end={item.to === "/"}
+            className={({ isActive }) =>
+              cn(
+                "flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                isActive
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  : "text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+              )
+            }
           >
             <item.icon className="w-4 h-4" />
             {item.label}
-          </button>
+          </NavLink>
         ))}
       </nav>
 
