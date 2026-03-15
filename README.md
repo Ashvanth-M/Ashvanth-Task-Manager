@@ -1,4 +1,4 @@
-##Ashvanth Task Manager
+Ashvanth Task Manager
 
 
 A modern, minimal task management web application built by Ashvanth to organize daily work, track progress, and visualize productivity in a clean dashboard. The app focuses on clarity, fast interactions, and a distraction‑free UI for managing personal or small‑team tasks.
